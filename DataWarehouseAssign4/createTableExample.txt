@@ -1,0 +1,40 @@
+create table [table_name]
+(
+	[variable_1] [variable_1_type]
+	...
+	[variable_n] [variable_n_type]
+	primary key ([varaible_1], ... [variable_n])
+);
+
+private PrintWriter writer;
+	
+	public SQLGenerator(String writerFilename) throws FileNotFoundException
+	{
+		writer = new PrintWriter(writerFilename);
+	}
+	
+	public SQLGenerator(Tokenizer tok)
+	{
+		
+	}
+	
+	public void insertItems(String[] items)
+	{
+		for(int i = 0; i < items.length; ++i)
+		{
+			if(items[i].equals("."))
+			{
+				items[i] = "NULL";	/*	This isn't technically a good practice... 
+										This changes the value of the original
+										variable, however I am quite sure that 
+										it will never be used again so it shouldn't
+										matter. One of the few annoying quirks of
+										Java's Pass-by-Reference-by-Value...*/ 
+			}
+		}
+	}
+	
+	public void close()
+	{
+		writer.close();
+	}
